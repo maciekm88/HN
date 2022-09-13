@@ -61,13 +61,17 @@ const HealthNationTabBars: React.FC = ({
           >
             <View>
               <PoppinsBold
-                color={isFocused ? theme.color.tetriary : theme.color.primary}
+                color={isFocused ? theme.color.white : theme.color.grey}
                 size={theme.fontSize.twelve}
                 style={{
-                  // ...styles.label,
+                  ...styles.label,
                   backgroundColor: isFocused
-                    ? theme.backgroundColor.tetriary
+                    ? theme.backgroundColor.main
                     : theme.backgroundColor.primary,
+                  borderWidth: isFocused ? 2 : 2,
+                  borderColor: isFocused
+                    ? theme.backgroundColor.main
+                    : theme.color.grey,
                 }}>
                 {label}
               </PoppinsBold>
@@ -85,19 +89,18 @@ const styles = ScaledSheet.create({
     height: '46@vs',
     backgroundColor: theme.backgroundColor.primary,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
   },
   button: {
-    paddingVertical: '6@vs',
-    paddingHorizontal: '10@s',
+    width: 97,
   },
   label: {
-    textTransform: 'uppercase',
     letterSpacing: '0.48@s',
     paddingVertical: '3@vs',
     paddingHorizontal: '14@s',
     textAlign: 'center',
     textAlignVertical: 'center',
+    borderRadius: 10,
   },
 });
 

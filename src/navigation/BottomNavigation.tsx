@@ -23,7 +23,7 @@ const BottomNavigation: React.FC = (): JSX.Element => {
           <Button onPress={() => navigation.openDrawer()} title="Profil" />
         ),
       })}>
-      <Tab.Screen name="Panel Główny" component={Main} />
+      <Tab.Screen name="Panel" component={Main} />
       <Tab.Screen name="Czat" component={Messages} />
       <Tab.Screen name="Znajomi" component={Friends} />
       <Tab.Screen name="Sklep" component={Shop} />

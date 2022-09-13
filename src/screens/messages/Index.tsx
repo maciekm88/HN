@@ -1,10 +1,13 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
+//styles
+import {theme} from '../../styles/styles';
+
 const Index: React.FC = (): JSX.Element => {
   return (
     <View>
-      <Text>Messages</Text>
+      <Text style={{color: theme.color.main}}>Messages</Text>
     </View>
   );
 };

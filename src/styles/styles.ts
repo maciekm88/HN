@@ -2,13 +2,17 @@ import {moderateScale} from 'react-native-size-matters';
 
 export const theme = {
   color: {
+    white: '#fff',
+    main: '#28235F',
+    grey: '#7B7B7B',
     primary: 'gold',
     secondary: 'lime',
     tetriary: 'brown',
   },
   backgroundColor: {
-    primary: 'rebeccapurple',
-    secondary: 'yellow',
+    main: '#4FCBC2',
+    primary: '#F3F2F2',
+    secondary: '#4FCBC2',
     tetriary: 'blue',
     quaternary: 'black',
     quinary: 'red',
