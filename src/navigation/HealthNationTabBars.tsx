@@ -50,7 +50,7 @@ const HealthNationTabBars: React.FC = ({
 
         return (
           <TouchableOpacity
-            accessibilityHint="Nawiguje do innego ekranu aplikacji"
+            accessibilityHint="Nawiguje do innego zakładki aplikacji w obrębie obecnego ekranu"
             accessibilityRole="button"
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}

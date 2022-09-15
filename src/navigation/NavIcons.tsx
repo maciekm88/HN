@@ -13,9 +13,9 @@ import ShopIcon from '../assets/navAssets/ShopIcon';
 const NavIcons = (label: string, isFocused: boolean): ReactNode => {
   let color;
   if (isFocused) {
-    color = theme.backgroundColor.quinary;
+    color = theme.color.main;
   } else {
-    color = theme.color.primary;
+    color = theme.color.white;
   }
   switch (label) {
     case 'Panel':

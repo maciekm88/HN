@@ -8,6 +8,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
   Profile: undefined;
+  Article: {title: string; url: string};
 };
 
 export type DrawerParamList = {
@@ -66,4 +67,9 @@ export type MainNavigation = NativeStackScreenProps<RootStackParamList>;
 export type DrawerScreenNavigation = NativeStackScreenProps<
   RootStackParamList,
   'Drawer'
+>;
+
+export type ArticleScreenNavigation = NativeStackScreenProps<
+  RootStackParamList,
+  'Article'
 >;

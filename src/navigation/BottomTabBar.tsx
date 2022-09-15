@@ -52,23 +52,14 @@ const BottomTabBar = ({state, descriptors, navigation}: any) => {
                 isFocused ? {selected: true} : {selected: false}
               }
               accessibilityLabel={options.tabBarAccessibilityLabel}
-              accessibilityHint=""
+              accessibilityHint="Nawiguje do innego ekranu aplikacji"
               testID={options.tabBarTestID}
               onPress={onPress}
               onLongPress={onLongPress}
               style={styles.container}>
-              <View
-                style={{
-                  ...styles.buttonContainer,
-                  color: isFocused
-                    ? theme.backgroundColor.quinary
-                    : theme.backgroundColor.tetriary,
-                }}>
+              <View style={styles.buttonContainer}>
                 {NavIcons(label, isFocused)}
               </View>
-              {/* <Text style={{color: isFocused ? 'yellow' : '#222'}}>
-                {label}
-              </Text> */}
             </Pressable>
           );
         })}
