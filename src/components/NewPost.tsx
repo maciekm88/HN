@@ -1,11 +1,16 @@
 import React from 'react';
 import {View, Image, TextInput} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
+
+//components
+import PhotoIcon from '../assets/icons/PhotoIcon';
+import MontserratSemiBold from './fonts/Montserrat-SemiBold';
+
+//styles
 import {theme} from '../styles/styles';
 
 //types
 import {NewPostScreenNavigation} from '../types/navigation';
-import PoppinsBold from './fonts/PoppinsBold';
 
 //placeholders
 const placeholder = require('../assets/placeholders/cat.jpg');
@@ -19,18 +24,18 @@ const Index: React.FC<{
   return (
     <View style={styles.container}>
       <View style={styles.newPostTitle}>
-        <PoppinsBold
+        <MontserratSemiBold
           color={theme.color.main}
           size={theme.fontSize.twelve}
           numberOfLines={1}
           style={styles.title}>
           Dodaj tytuł:
-        </PoppinsBold>
+        </MontserratSemiBold>
         <TextInput
           style={styles.inputTitle}
           placeholder="Lorem ipsum..."
           placeholderTextColor={theme.color.grey}
-          multiline={true}
+          multiline={false}
           accessibilityLabel="Pole do wpisania tytułu nowego posta"
           accessibilityHint="Wpisz tytuł nowego posta"
         />
@@ -50,11 +55,23 @@ const Index: React.FC<{
           placeholder="Napisz coś"
           placeholderTextColor={theme.color.grey}
           multiline={true}
-          accessibilityLabel="Pole do wpisania tytułu nowego posta"
-          accessibilityHint="Wpisz tytuł nowego posta"
+          accessibilityLabel="Pole do wpisania treści nowego posta"
+          accessibilityHint="Wpisz treść nowego posta"
         />
       </View>
-      <View style={styles.photo}></View>
+      <View style={styles.photo}>
+        <PhotoIcon
+          color={theme.color.white}
+          width={scale(21)}
+          height={verticalScale(21)}
+        />
+        <MontserratSemiBold
+          color={theme.color.main}
+          size={theme.fontSize.fourteen}
+          numberOfLines={1}>
+          Dodaj zdjęcie
+        </MontserratSemiBold>
+      </View>
     </View>
   );
 };
@@ -63,7 +80,6 @@ const styles = ScaledSheet.create({
     flexDirection: 'column',
     marginTop: '23@vs',
     height: '100%',
-    backgroundColor: theme.backgroundColor.primary,
   },
   newPostTitle: {
     paddingHorizontal: '33@s',
@@ -107,6 +123,13 @@ const styles = ScaledSheet.create({
     width: '79%',
     height: '100%',
   },
-  photo: {},
+  photo: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingHorizontal: '33@s',
+    width: '100%',
+    height: '48@vs',
+  },
 });
 export default Index;

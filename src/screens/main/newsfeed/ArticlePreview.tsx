@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Pressable, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {scale, verticalScale} from 'react-native-size-matters';
 
 //types
 import {ArticleScreenNavigation} from '../../../types/navigation';
@@ -10,9 +11,9 @@ import {theme} from '../../../styles/styles';
 import {item as styles} from './styles';
 
 //components
-import PoppinsBold from '../../../components/fonts/PoppinsBold';
 import HeartIcon from '../../../assets/icons/HeartIcon';
-import {scale, verticalScale} from 'react-native-size-matters';
+import MontserratSemiBold from '../../../components/fonts/Montserrat-SemiBold';
+import MontserratMedium from '../../../components/fonts/MontserratMedium';
 
 //placeholders
 const placeholder = require('../../../assets/placeholders/cat.jpg');
@@ -63,23 +64,23 @@ const ArticlePreview: React.FC<Props> = ({
           accessibilityLabel={`zdjęcie autora: ${name}`}
           accessibilityHint="Przedstawia zdjęcie wybranego autora"
         />
-        <PoppinsBold
+        <MontserratSemiBold
           color={theme.color.main}
           size={theme.fontSize.twelve}
           numberOfLines={1}
           style={styles.title}>
           {name}
-        </PoppinsBold>
+        </MontserratSemiBold>
       </View>
       <View style={styles.postTitle}>
-        <PoppinsBold
+        <MontserratSemiBold
           numberOfLines={1}
           color={theme.color.main}
           size={theme.fontSize.twelve}
           style={styles.leadTitle}>
           {title.replace(/^(.{30}[^\s]*).*/, '$1')}...
           {/* this replace expression returns first 30 characters plus any subsequent non-space characters*/}
-        </PoppinsBold>
+        </MontserratSemiBold>
         <HeartIcon
           style={styles.heartIcon}
           width={scale(22)}
@@ -87,29 +88,29 @@ const ArticlePreview: React.FC<Props> = ({
         />
       </View>
       <View style={styles.articleText}>
-        <PoppinsBold
+        <MontserratMedium
           numberOfLines={2}
           color={theme.color.grey}
           size={theme.fontSize.ten}
           style={styles.leadText}>
           {articleText.replace(/^(.{100}[^\s]*).*/, '$1')}...
           {/* this replace expression returns first 100 characters plus any subsequent non-space characters*/}
-        </PoppinsBold>
-        <PoppinsBold
+        </MontserratMedium>
+        <MontserratMedium
           numberOfLines={1}
           color={theme.color.primaryMint}
           size={theme.fontSize.ten}
           style={styles.more}>
           Więcej
-        </PoppinsBold>
+        </MontserratMedium>
       </View>
-      <PoppinsBold
+      <MontserratMedium
         numberOfLines={1}
         color={theme.color.grey}
         size={theme.fontSize.ten}
         style={styles.postTime}>
         {time} - random json time
-      </PoppinsBold>
+      </MontserratMedium>
     </Pressable>
   );
 };

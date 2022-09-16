@@ -86,6 +86,21 @@ const listHeader = ScaledSheet.create({
   pollAccess: {
     lineHeight: '16@ms',
   },
+  searchContainer: {
+    width: '304@s',
+    backgroundColor: theme.backgroundColor.white,
+    marginHorizontal: '23@s',
+    marginBottom: '20@vs',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderRadius: '10@ms',
+    paddingHorizontal: '12@s',
+  },
+  input: {
+    width: '94%',
+    paddingHorizontal: '12@s',
+  },
 });
 
 export {item, listHeader};

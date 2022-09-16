@@ -4,7 +4,7 @@ import {theme} from '../styles/styles';
 import {ScaledSheet} from 'react-native-size-matters';
 
 //components
-import PoppinsBold from '../components/fonts/PoppinsBold';
+import MontserratSemiBold from '../components/fonts/Montserrat-SemiBold';
 
 const HealthNationTabBars: React.FC = ({
   state,
@@ -58,7 +58,7 @@ const HealthNationTabBars: React.FC = ({
             onLongPress={onLongPress}
             key={index}>
             <View>
-              <PoppinsBold
+              <MontserratSemiBold
                 color={isFocused ? theme.color.white : theme.color.grey}
                 size={theme.fontSize.twelve}
                 style={{
@@ -72,7 +72,7 @@ const HealthNationTabBars: React.FC = ({
                     : theme.color.grey,
                 }}>
                 {label}
-              </PoppinsBold>
+              </MontserratSemiBold>
             </View>
           </Pressable>
         );

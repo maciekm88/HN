@@ -1,11 +1,17 @@
 import React from 'react';
 import {View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+
+//components
+import MontserratSemiBold from './fonts/Montserrat-SemiBold';
+import MontserratMedium from './fonts/MontserratMedium';
+import MontserratRegular from './fonts/MontserratRegular';
+
+//styles
 import {theme} from '../styles/styles';
 
 //types
 import {ArticleScreenNavigation} from '../types/navigation';
-import PoppinsBold from './fonts/PoppinsBold';
 
 type ArtykułScreenRouteProp = ArticleScreenNavigation['route'];
 
@@ -24,35 +30,35 @@ const Index: React.FC<{
           accessibilityLabel="Zdjęcie autora"
           accessibilityHint="Przedstawia zdjęcie wybranego autora"
         />
-        <PoppinsBold
+        <MontserratSemiBold
           color={theme.color.main}
           size={theme.fontSize.twentySix}
           numberOfLines={1}
           style={styles.text}>
           {route.params.name}
-        </PoppinsBold>
+        </MontserratSemiBold>
       </View>
-      <PoppinsBold
+      <MontserratRegular
         color={theme.color.grey}
         size={theme.fontSize.ten}
         numberOfLines={1}
         style={styles.text}>
         {route.params.time}
-      </PoppinsBold>
-      <PoppinsBold
+      </MontserratRegular>
+      <MontserratSemiBold
         color={theme.color.primaryMint}
         size={theme.fontSize.twenty}
         numberOfLines={5}
         style={styles.text}>
         {route.params.title}
-      </PoppinsBold>
-      <PoppinsBold
+      </MontserratSemiBold>
+      <MontserratMedium
         color={theme.color.grey}
         size={theme.fontSize.sixteen}
         numberOfLines={25}
         style={styles.text}>
         {route.params.articleText}
-      </PoppinsBold>
+      </MontserratMedium>
     </View>
   );
 };

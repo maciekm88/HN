@@ -1,16 +1,18 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
+//components
+import MontserratSemiBold from '../../../components/fonts/Montserrat-SemiBold';
+
 //styles
 import {theme} from '../../../styles/styles';
-import PoppinsBold from '../../../components/fonts/PoppinsBold';
 
 const Index: React.FC = (): JSX.Element => {
   return (
     <View>
-      <PoppinsBold size={24} color={theme.color.main}>
+      <MontserratSemiBold size={24} color={theme.color.main}>
         JESTEŚ NA PODSTRONIE WIDEO
-      </PoppinsBold>
+      </MontserratSemiBold>
       <Text
         style={{
           fontSize: theme.fontSize.twelve,
