@@ -9,6 +9,14 @@ export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
   Profile: undefined;
   Article: {title: string; url: string};
+  Post: {
+    name: string;
+    image: string;
+    title: string;
+    articleText: string;
+    time: string;
+  };
+  'Nowy post': undefined;
 };
 
 export type DrawerParamList = {
@@ -72,4 +80,14 @@ export type DrawerScreenNavigation = NativeStackScreenProps<
 export type ArticleScreenNavigation = NativeStackScreenProps<
   RootStackParamList,
   'Article'
+>;
+
+export type PostScreenNavigation = NativeStackScreenProps<
+  RootStackParamList,
+  'Post'
+>;
+
+export type NewPostScreenNavigation = NativeStackScreenProps<
+  RootStackParamList,
+  'Nowy post'
 >;

@@ -1,5 +1,6 @@
 import {ScaledSheet} from 'react-native-size-matters';
 import {Dimensions} from 'react-native';
+import {theme} from '../../../styles/styles';
 
 const {width} = Dimensions.get('window');
 
@@ -54,4 +55,37 @@ const item = ScaledSheet.create({
   },
 });
 
-export {item};
+const listHeader = ScaledSheet.create({
+  poll: {
+    height: '80@vs',
+    marginHorizontal: '23@s',
+    marginBottom: '18@vs',
+    borderRadius: '10@ms',
+    backgroundColor: theme.backgroundColor.white,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  pollDescription: {
+    marginLeft: '12@s',
+    width: '60%',
+  },
+  iconPositioner: {
+    width: '80@s',
+    height: '58@vs',
+    borderRadius: '20@ms',
+    backgroundColor: theme.backgroundColor.main,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: '16@s',
+    marginLeft: '16@s',
+  },
+  pollName: {
+    lineHeight: '18@ms',
+  },
+  pollAccess: {
+    lineHeight: '16@ms',
+  },
+});
+
+export {item, listHeader};

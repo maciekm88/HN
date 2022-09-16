@@ -35,6 +35,16 @@ const ArticlePreview: React.FC<Props> = ({
 }): JSX.Element => {
   const navigation = useNavigation<ArticleScreenNavigationProp>();
 
+  const handlePost = (): void => {
+    navigation.navigate('Post', {
+      name: name,
+      image: placeholder,
+      title: title,
+      articleText: articleText,
+      time: time,
+    });
+  };
+
   return (
     <Pressable
       style={styles.container}
@@ -42,9 +52,7 @@ const ArticlePreview: React.FC<Props> = ({
       accessibilityRole="button"
       accessibilityLabel={`Otwórz artykuł: ${title} `}
       accessibilityHint={`Przenosi do szczegółowego widoku artykułu.`}
-      onPress={(): void => {
-        navigation.navigate('Article', {title: title, url: url});
-      }}>
+      onPress={handlePost}>
       <View style={styles.postAuthor}>
         <Image
           source={placeholder}
@@ -70,7 +78,7 @@ const ArticlePreview: React.FC<Props> = ({
           size={theme.fontSize.twelve}
           style={styles.leadTitle}>
           {title.replace(/^(.{30}[^\s]*).*/, '$1')}...
-          {/* this replace exression returns first 30 characters plus any subsequent non-space characters*/}
+          {/* this replace expression returns first 30 characters plus any subsequent non-space characters*/}
         </PoppinsBold>
         <HeartIcon
           style={styles.heartIcon}
@@ -85,7 +93,7 @@ const ArticlePreview: React.FC<Props> = ({
           size={theme.fontSize.ten}
           style={styles.leadText}>
           {articleText.replace(/^(.{100}[^\s]*).*/, '$1')}...
-          {/* this replace exression returns first 100 characters plus any subsequent non-space characters*/}
+          {/* this replace expression returns first 100 characters plus any subsequent non-space characters*/}
         </PoppinsBold>
         <PoppinsBold
           numberOfLines={1}

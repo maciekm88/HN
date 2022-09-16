@@ -1,25 +1,32 @@
 import axios from 'axios';
-import {Text, View, FlatList, SafeAreaView} from 'react-native';
+import {View, FlatList, SafeAreaView, Pressable} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 //styles
+import {listHeader as styles} from './styles';
 
 //Components
 import ArticlePreview from './ArticlePreview';
 import {scale, verticalScale} from 'react-native-size-matters';
+import PollIcon from '../../../assets/icons/PollIcon';
+import {theme} from '../../../styles/styles';
+import PoppinsBold from '../../../components/fonts/PoppinsBold';
+
+//types
+import {ArticleScreenNavigation} from '../../../types/navigation';
 
 const Index: React.FC = (): JSX.Element | null => {
   const [newsfeedData, setNewsfeedData] = useState([]);
+  // const [newsfeedPage, setNewsfeedPage] = useState([]);
+
+  type ArticleScreenNavigationProp = ArticleScreenNavigation['navigation'];
 
   useEffect(() => {
     axios.get('https://api.npoint.io/4d4008557f9ac84ebe64').then(response => {
-      // console.log(response.data.data[15].name);
       setNewsfeedData(response.data.data);
     });
   }, []);
-
-  // const keyExtractor = (item: IFeed) =>
-  // item._id.toString();
 
   const renderItem = ({item}: any) => {
     return (
@@ -28,37 +35,58 @@ const Index: React.FC = (): JSX.Element | null => {
         image={item.image}
         title={item.title}
         articleText={item.articleText}
-        url={item.url}
         time={item.time}
       />
     );
   };
 
+  const navigation = useNavigation<ArticleScreenNavigationProp>();
+
+  const handlePost = (): void => {
+    navigation.navigate('Post', {});
+  };
+
   const poll = () => {
     return (
-      <View
-        style={{
-          height: 50,
-          marginHorizontal: scale(23),
-          marginBottom: verticalScale(18),
-          borderRadius: scale(10),
-          backgroundColor: '#fff',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text style={{fontSize: 24, color: '#28235F'}}> TO DO: POOL </Text>
-      </View>
+      <Pressable
+        accessibilityRole="button"
+        style={styles.poll}
+        onPress={handlePost}>
+        <View style={styles.pollDescription}>
+          <PoppinsBold
+            numberOfLines={1}
+            color={theme.color.main}
+            size={theme.fontSize.fourteen}
+            style={styles.pollName}>
+            Ankieta zdrowia
+          </PoppinsBold>
+          <PoppinsBold
+            numberOfLines={2}
+            color={theme.color.main}
+            size={theme.fontSize.twelve}
+            style={styles.pollName}>
+            Dostęp do: Grup zdrowia{'\n'}Czas wypełniania: ok. 4 min
+          </PoppinsBold>
+        </View>
+        <View style={styles.iconPositioner}>
+          <PollIcon
+            color={theme.color.white}
+            width={scale(18)}
+            height={verticalScale(25)}
+          />
+        </View>
+      </Pressable>
     );
   };
 
   return (
     <SafeAreaView>
       <FlatList
-        data={newsfeedData}
+        data={newsfeedData.slice(0, 10)}
+        initialNumToRender={10}
         renderItem={renderItem}
-        // ItemSeparatorComponent={divider}
-        // keyExtractor={item => item._id}
         ListHeaderComponent={poll}
+        showsVerticalScrollIndicator={true}
       />
     </SafeAreaView>
   );

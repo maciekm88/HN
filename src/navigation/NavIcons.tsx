@@ -18,7 +18,7 @@ const NavIcons = (label: string, isFocused: boolean): ReactNode => {
     color = theme.color.white;
   }
   switch (label) {
-    case 'Panel':
+    case 'Newsfeed':
       return (
         <NewsfeedIcon
           color={color}

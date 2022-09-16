@@ -10,7 +10,8 @@ import Main from '../screens/main/Index';
 import Messages from '../screens/messages/Index';
 import Friends from '../screens/friends/Index';
 import Shop from '../screens/shop/Index';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image, Pressable} from 'react-native';
+import {theme} from '../styles/styles';
 
 const Tab = createBottomTabNavigator<BottomParamList>();
 
@@ -20,20 +21,56 @@ const BottomNavigation: React.FC = (): JSX.Element => {
       tabBar={props => <BottomTabBar {...props} />}
       screenOptions={({navigation}) => ({
         headerRight: () => (
-          // <Button onPress={() => navigation.openDrawer()} title="Profil" />
-          <TouchableOpacity
+          <Pressable
             accessibilityRole="button"
             onPress={() => navigation.openDrawer()}>
             <Image
               source={require('../assets/placeholders/cat.jpg')}
-              style={{width: 45, height: 45, borderRadius: 45 / 2}}></Image>
-          </TouchableOpacity>
+              style={{
+                width: 45,
+                height: 45,
+                borderRadius: 45 / 2,
+                marginRight: 23,
+              }}></Image>
+          </Pressable>
         ),
       })}>
-      <Tab.Screen name="Panel" component={Main} />
-      <Tab.Screen name="Czat" component={Messages} />
-      <Tab.Screen name="Znajomi" component={Friends} />
-      <Tab.Screen name="Sklep" component={Shop} />
+      <Tab.Screen
+        name="Newsfeed"
+        component={Main}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.backgroundColor.primary,
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Czat"
+        component={Messages}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.backgroundColor.primary,
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Znajomi"
+        component={Friends}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.backgroundColor.primary,
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Sklep"
+        component={Shop}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.backgroundColor.primary,
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };

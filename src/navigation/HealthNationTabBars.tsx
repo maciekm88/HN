@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, Pressable} from 'react-native';
 import {theme} from '../styles/styles';
 import {ScaledSheet} from 'react-native-size-matters';
 
@@ -49,16 +49,14 @@ const HealthNationTabBars: React.FC = ({
         };
 
         return (
-          <TouchableOpacity
+          <Pressable
             accessibilityHint="Nawiguje do innego zakładki aplikacji w obrębie obecnego ekranu"
             accessibilityRole="button"
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            key={index}
-            //   style={{...styles.button}}
-          >
+            key={index}>
             <View>
               <PoppinsBold
                 color={isFocused ? theme.color.white : theme.color.grey}
@@ -76,7 +74,7 @@ const HealthNationTabBars: React.FC = ({
                 {label}
               </PoppinsBold>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         );
       })}
     </View>

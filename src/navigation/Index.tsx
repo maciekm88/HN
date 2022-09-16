@@ -8,6 +8,8 @@ import {RootStackParamList} from '../types/navigation';
 
 //Components
 import DrawerNavigation from './DrawerNavigation';
+import Post from '../components/Post';
+import NewPost from '../components/NewPost';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,10 +23,12 @@ const Index: React.FC = (): JSX.Element | null => {
             component={DrawerNavigation}
             options={{headerShown: false}}
           />
+          <Stack.Screen name="Nowy post" component={NewPost} />
           <Stack.Group
             screenOptions={({route}) => ({
               title: route.params.title,
             })}></Stack.Group>
+          <Stack.Screen name="Post" component={Post} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
