@@ -93,8 +93,8 @@ const ArticlePreview: React.FC<Props> = ({
           color={theme.color.grey}
           size={theme.fontSize.ten}
           style={styles.leadText}>
-          {articleText.replace(/^(.{100}[^\s]*).*/, '$1')}...
-          {/* this replace expression returns first 100 characters plus any subsequent non-space characters*/}
+          {articleText.replace(/^(.{85}[^\s]*).*/, '$1')}...
+          {/* this replace expression returns first 85 characters plus any subsequent non-space characters*/}
         </MontserratMedium>
         <MontserratMedium
           numberOfLines={1}
