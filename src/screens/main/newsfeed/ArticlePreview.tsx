@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Pressable, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale} from 'react-native-size-matters';
 
@@ -47,7 +47,7 @@ const ArticlePreview: React.FC<Props> = ({
   };
 
   return (
-    <Pressable
+    <TouchableOpacity
       style={styles.container}
       accessible={true}
       accessibilityRole="button"
@@ -111,7 +111,7 @@ const ArticlePreview: React.FC<Props> = ({
         style={styles.postTime}>
         {time} - random json time
       </MontserratMedium>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

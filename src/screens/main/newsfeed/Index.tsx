@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {View, FlatList, SafeAreaView, Pressable, TextInput} from 'react-native';
+import {View, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale} from 'react-native-size-matters';
@@ -11,7 +11,6 @@ import {theme} from '../../../styles/styles';
 //Components
 import ArticlePreview from './ArticlePreview';
 import PollIcon from '../../../assets/icons/PollIcon';
-import SearchIcon from '../../../assets/icons/SearchIcon';
 import MontserratRegular from '../../../components/fonts/MontserratRegular';
 import MontserratMedium from '../../../components/fonts/MontserratMedium';
 import MontserratSemiBold from '../../../components/fonts/Montserrat-SemiBold';
@@ -67,7 +66,7 @@ const Index: React.FC = (): JSX.Element | null => {
 
   const poll = () => {
     return (
-      <Pressable
+      <TouchableOpacity
         accessibilityRole="button"
         style={styles.poll}
         onPress={handlePost}>
@@ -101,21 +100,12 @@ const Index: React.FC = (): JSX.Element | null => {
             height={verticalScale(25)}
           />
         </View>
-      </Pressable>
+      </TouchableOpacity>
     );
   };
 
   return (
     <SafeAreaView>
-      <View style={styles.searchContainer}>
-        <SearchIcon width={scale(18)} height={verticalScale(18)} />
-        <TextInput
-          style={styles.input}
-          multiline={false}
-          accessibilityLabel="Pole do wyszukiwania"
-          accessibilityHint="Wpisz wyszukiwaną frazę"
-        />
-      </View>
       <FlatList
         data={newsfeedPageData}
         // initialNumToRender={10}

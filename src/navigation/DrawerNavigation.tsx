@@ -4,7 +4,8 @@ import {
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import {useNavigation} from '@react-navigation/native';
-import {Button} from 'react-native';
+import {Button, View} from 'react-native';
+import {verticalScale} from 'react-native-size-matters';
 
 //components
 import BottomNavigation from './BottomNavigation';
@@ -31,8 +32,19 @@ const CustomDrawerContent: React.FC<{
 
   return (
     <DrawerContentScrollView>
-      <Button onPress={() => navigation.closeDrawer()} title="Close Profile" />
-      <Button onPress={newPost} title="Nowy post" />
+      <View
+        style={{
+          justifyContent: 'space-around',
+          alignItems: 'stretch',
+          height: verticalScale(185),
+        }}>
+        <Button
+          onPress={() => navigation.closeDrawer()}
+          title="Wróć"
+          color="#7B7B7B"
+        />
+        <Button onPress={newPost} title="Nowy post" color="#4FCBC2" />
+      </View>
     </DrawerContentScrollView>
   );
 };
@@ -43,7 +55,11 @@ const DrawerNavigation: React.FC = (): JSX.Element | null => {
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
         drawerType: 'front',
-        swipeEnabled: false,
+        swipeEnabled: true,
+        drawerStyle: {
+          backgroundColor: '#C4C4C4',
+          width: '50%',
+        },
       }}>
       <Drawer.Screen
         name="BottomNavigation"
