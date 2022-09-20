@@ -29,7 +29,7 @@ const HealthNationTabBars: React.FC = ({
             accessibilityHint="Wpisz wyszukiwaną frazę"
           />
         </View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={styles.container}>
             {state.routes.map((route: any, index: number) => {
               const {options} = descriptors[route.key];

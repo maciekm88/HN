@@ -12,6 +12,7 @@ import Friends from '../screens/friends/Index';
 import Shop from '../screens/shop/Index';
 import {Image, Pressable} from 'react-native';
 import {theme} from '../styles/styles';
+import {verticalScale} from 'react-native-size-matters';
 
 const Tab = createBottomTabNavigator<BottomParamList>();
 
@@ -34,6 +35,14 @@ const BottomNavigation: React.FC = (): JSX.Element => {
               }}></Image>
           </Pressable>
         ),
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Montserrat',
+          fontWeight: '700',
+          fontSize: verticalScale(16),
+          color: theme.color.main,
+          lineHeight: 26,
+        },
       })}>
       <Tab.Screen
         name="Newsfeed"

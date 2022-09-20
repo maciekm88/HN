@@ -1,5 +1,6 @@
 import {Text, View} from 'react-native';
 import React from 'react';
+import {scale} from 'react-native-size-matters';
 
 //components
 import MontserratSemiBold from '../../../components/fonts/Montserrat-SemiBold';
@@ -9,7 +10,7 @@ import {theme} from '../../../styles/styles';
 
 const Index: React.FC = (): JSX.Element => {
   return (
-    <View>
+    <View style={{marginHorizontal: scale(23)}}>
       <MontserratSemiBold size={24} color={theme.color.main}>
         JESTEŚ NA PODSTRONIE ARTYKUŁY
       </MontserratSemiBold>

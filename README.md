@@ -2,6 +2,10 @@
 
 ## HealthNation react-native app
 
+## Update 20.09.2022, check new app-release.apk:
+
+Top Tab Bar Navigation rebuilt, changed styles of drawer nav & header nav, minor styling.
+
 ######INSTALLATION:
 
 git clone
