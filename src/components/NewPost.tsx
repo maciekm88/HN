@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Image, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {View, Image, TextInput, Button} from 'react-native';
 import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
 
 //components
@@ -21,6 +21,12 @@ const Index: React.FC<{
   route: NowyPostScreenRouteProp;
   // eslint-disable-next-line no-empty-pattern
 }> = ({}): JSX.Element | null => {
+  const [title, setTitle] = useState<string>('');
+  const [articleText, setArticleText] = useState<string>('');
+
+  console.log('title: ', title);
+  console.log('article text: ', articleText);
+
   return (
     <View style={styles.container}>
       <View style={styles.newPostTitle}>
@@ -38,6 +44,7 @@ const Index: React.FC<{
           multiline={false}
           accessibilityLabel="Pole do wpisania tytułu nowego posta"
           accessibilityHint="Wpisz tytuł nowego posta"
+          onChangeText={value => setTitle(value)}
         />
       </View>
       <View style={styles.newPostText}>
@@ -57,8 +64,10 @@ const Index: React.FC<{
           multiline={true}
           accessibilityLabel="Pole do wpisania treści nowego posta"
           accessibilityHint="Wpisz treść nowego posta"
+          onChangeText={val => setArticleText(val)}
         />
       </View>
+      <Button title="Add article" />
       <View style={styles.photo}>
         <PhotoIcon
           color={theme.color.white}
@@ -97,6 +106,7 @@ const styles = ScaledSheet.create({
   inputTitle: {
     width: '73%',
     height: '100%',
+    color: theme.color.grey,
   },
   newPostText: {
     paddingHorizontal: '33@s',
@@ -122,6 +132,7 @@ const styles = ScaledSheet.create({
     marginLeft: '12@s',
     width: '79%',
     height: '100%',
+    color: theme.color.grey,
   },
   photo: {
     flexDirection: 'row',
