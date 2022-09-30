@@ -109,7 +109,7 @@ const ArticleItem: React.FC<Props> = ({
         color={theme.color.grey}
         size={theme.fontSize.ten}
         style={styles.postTime}>
-        {time} - random json time
+        {time}
       </MontserratMedium>
     </TouchableOpacity>
   );

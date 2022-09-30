@@ -12,31 +12,24 @@ const Index: React.FC = (): JSX.Element => {
   return (
     <ScrollView contentContainerStyle={{marginHorizontal: scale(23)}}>
       <MontserratSemiBold size={24} color={theme.color.main}>
-        MÓJ KOMENTARZ DO ZADANIA:
+        MÓJ KOMENTARZ DO APLIKACJI:
       </MontserratSemiBold>
       <Text
         style={{
           fontSize: theme.fontSize.twelve,
           color: theme.backgroundColor.red,
         }}>
-        Bardzo serdecznie chciałem podziękować za możliwość wzięcia udziału w
-        rekrutacji. Wykonując zadania starałem się należycie zaprezentować moją
-        wiedzę. Nie wszystko jednak udało mi się zrobić tak, jak chciałem.
-        Zadanie było dość obszerne i nie ze wszystkim się wyrobiłem w czasie. Na
-        koniec chciałbym jeszcze zaprezentować kilka moich koncepcji lub braków
-        dotyczących wykonanego przeze mnie zadania:{'\n'}
-        {'\n'}- Nie zdążyłem zrobić dodawania posta do flatlisty, planując
-        zadanie korzystałem z pliku json znajdującego się na zewnętrznym
-        serwerze.{'\n'}
+        Chciałbym jeszcze zaprezentować kilka moich koncepcji lub braków
+        dotyczących wykonanej przeze mnie aplikacji:{'\n'}
         {'\n'}- Posty we flatliście są klikalne, ekran posta jest minimalnie
         ostylowany{'\n'}
         {'\n'}- Cała nawigacja jest klikalna, przenosi do odpowiednich ekranów
         {'\n'}
         {'\n'}- Dostęp do ekranu NOWY POST można uzyskać po otworzeniu Drawer
-        Navigation, tj. po kliknięciu w zdjęcie w prawym górnym rogu ekranu.
+        Navigation, tj. po kliknięciu w zdjęcie w prawym górnym rogu ekranu lub
+        po rozwinięciu Drawer Navigation gestem przeciągnięcia lewej krawędzi
+        ekranu do środka
         {'\n'}
-        {'\n'}- Ekran NOWY POST jest również ostylowany, brakuje jednak ww
-        funkcjonalności{'\n'}
         {'\n'}- Zainstalowałem kilka niezbędnych bibliotek, np.
         react-native-size matters w celu prawidłowego wyświetlania programu na
         różnych wielkościach ekranów, w tym również na tabletach.{'\n'}
@@ -61,6 +54,22 @@ const Index: React.FC = (): JSX.Element => {
         {'\n'}- Górną nawigację można przesuwać gestem, gdyż zakładki nie
         mieszczą się na ekranie{'\n'}
         {'\n'}- Dokonałem drobnych zmian w Drawer Navigation.{'\n'}
+        {'\n'}Dalsze zmiany w toku.{'\n'}
+      </Text>
+      <Text
+        style={{
+          fontSize: theme.fontSize.twelve,
+          color: 'fuchsia',
+        }}>
+        {'\n'}Update 30.09.2021:{'\n'}
+        {'\n'}- Zaimplementowano w aplikacji Reduxa do zarządzania stanem{'\n'}
+        {'\n'}- W zakładce Artykuły w Panelu Głównym aplikacji wyświetlana jest
+        FlatLista renderowana z pliku json w aplikacji (nie z zewnętrznego API
+        jak jest w zakładce Tablica)
+        {'\n'}
+        {'\n'}- W ekranie Nowy Post po wypełnieniu inputów po dwukrotnym
+        naciśnięciu buttona można dodać nowego posta do FlatListy w zakładce
+        Artykuły. Nowy post dodaje się na końcu FlatListy{'\n'}
         {'\n'}Dalsze zmiany w toku.{'\n'}
       </Text>
     </ScrollView>

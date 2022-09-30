@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
+
 import {View, Image, TextInput, Button} from 'react-native';
 import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {useDispatch} from 'react-redux';
+import store from '../redux/store';
 
 //components
 import PhotoIcon from '../assets/icons/PhotoIcon';
@@ -15,17 +18,62 @@ import {NewPostScreenNavigation} from '../types/navigation';
 //placeholders
 const placeholder = require('../assets/placeholders/cat.jpg');
 
+//data
+import {DATA_LIST} from '../screens/main/articles/data';
+
 type NowyPostScreenRouteProp = NewPostScreenNavigation['route'];
 
 const Index: React.FC<{
   route: NowyPostScreenRouteProp;
   // eslint-disable-next-line no-empty-pattern
 }> = ({}): JSX.Element | null => {
+  const dispatch = useDispatch();
+  const [articlesList, setArticlesList] = useState(DATA_LIST);
   const [title, setTitle] = useState<string>('');
   const [articleText, setArticleText] = useState<string>('');
+  const [id, setId] = useState<string>(Math.random().toString(36).slice(2, 14));
+  const [index, setIndex] = useState<number>(articlesList.length);
+  const [time, setTime] = useState(new Date().toLocaleString());
 
-  console.log('title: ', title);
-  console.log('article text: ', articleText);
+  // console.log('time: ', time);
+  // console.log('id :', id);
+  // console.log('index: ', index);
+  // console.log('data length', articlesList.length);
+
+  const [newPostData, setNewPostData] = useState({
+    id: Math.random().toString(36).slice(2, 14),
+    index: index,
+    name: 'John Doe',
+    title: title,
+    articleText: articleText,
+    time: new Date().toLocaleString(),
+  });
+
+  console.log('newpostdata = ', newPostData);
+
+  const newPost = () => {
+    setId(Math.random().toString(36).slice(2, 14));
+    setIndex(index + 1);
+    setTime(new Date().toLocaleString());
+    setNewPostData(prev => ({...prev, id, index, title, articleText, time}));
+    setArticlesList(current => [...current, newPostData]);
+    // DATA_LIST.push(newPostData);
+    // store.dispatch;
+    // console.log('aaa');
+    // console.log('bbb');
+    // console.log('ccc');
+    // console.log('ddd');
+    console.log('newpostdata after button press = ', newPostData);
+
+    if (newPostData.title !== '' && newPostData.articleText !== '') {
+      DATA_LIST.push(newPostData);
+      // store.dispatch;
+      dispatch;
+      console.log('store getstate: ', store.getState());
+    } else {
+      console.log('something went wrong');
+    } //w ten sposob dodaje się tylko po drugim kliku
+  };
 
   return (
     <View style={styles.container}>
@@ -38,13 +86,14 @@ const Index: React.FC<{
           Dodaj tytuł:
         </MontserratSemiBold>
         <TextInput
+          value={title}
           style={styles.inputTitle}
           placeholder="Lorem ipsum..."
           placeholderTextColor={theme.color.grey}
           multiline={false}
           accessibilityLabel="Pole do wpisania tytułu nowego posta"
           accessibilityHint="Wpisz tytuł nowego posta"
-          onChangeText={value => setTitle(value)}
+          onChangeText={val => setTitle(val)}
         />
       </View>
       <View style={styles.newPostText}>
@@ -64,10 +113,16 @@ const Index: React.FC<{
           multiline={true}
           accessibilityLabel="Pole do wpisania treści nowego posta"
           accessibilityHint="Wpisz treść nowego posta"
-          onChangeText={val => setArticleText(val)}
+          onChangeText={val => {
+            setArticleText(val);
+          }}
         />
       </View>
-      <Button title="Add article" />
+      <Button
+        title="Double tap to add post"
+        onPress={newPost}
+        color="#28235F"
+      />
       <View style={styles.photo}>
         <PhotoIcon
           color={theme.color.white}

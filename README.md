@@ -1,6 +1,19 @@
 # HN
 
-## HealthNation react-native app
+## HN react-native app
+
+## 🛑💡🛑💡🛑Update 30.09.2022, check new app-release.apk:🛑💡🛑💡🛑
+
+Redux implemented in app
+
+"Artykuły" tab in Main Panel done:
+
+- FlatList with items from local json file;
+
+"Nowy Post" screen in drawer navigation:
+
+- Inputs can be filled with data and send using Redux to FlatList in "Artykuły" tab.
+- New post will be displayed at the end of the list.
 
 ## Update 20.09.2022, check new app-release.apk:
 
