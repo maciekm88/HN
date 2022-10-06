@@ -1,13 +1,22 @@
 import React, {useState} from 'react';
-
-import {View, Image, TextInput, Button} from 'react-native';
+import {
+  Alert,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
 import store from '../redux/store';
+import {PermissionsAndroid} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 //components
-import PhotoIcon from '../assets/icons/PhotoIcon';
 import MontserratSemiBold from './fonts/Montserrat-SemiBold';
+import CameraIcon from '../assets/icons/CameraIcon';
+import GalleryIcon from '../assets/icons/GalleryIcon';
 
 //styles
 import {theme} from '../styles/styles';
@@ -34,6 +43,7 @@ const Index: React.FC<{
   const [id, setId] = useState<string>(Math.random().toString(36).slice(2, 14));
   const [index, setIndex] = useState<number>(articlesList.length);
   const [time, setTime] = useState(new Date().toLocaleString());
+  const [picture, setPicture] = useState('');
 
   // console.log('time: ', time);
   // console.log('id :', id);
@@ -73,6 +83,94 @@ const Index: React.FC<{
     } else {
       console.log('something went wrong');
     } //w ten sposob dodaje się tylko po drugim kliku
+  };
+
+  //add photo from camera
+
+  const addFromCamera = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'App Camera Permission',
+          message: 'App needs access to your camera ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        launchCamera(
+          {
+            mediaType: 'photo',
+            includeBase64: false,
+            quality: 1,
+          },
+          (response: any) => {
+            if (response.didCancel) {
+              setPicture('');
+            } else {
+              if (response.assets[0].fileSize > 20971520) {
+                Alert.alert(
+                  'Zbyt duży rozmiar pliku',
+                  'Maksymalna wielkość pliku to 20MB.',
+                  [{text: 'OK'}],
+                );
+                setPicture('');
+              } else {
+                setPicture(response.assets[0].uri);
+                // console.log('camera response: ', response.assets[0])
+              }
+            }
+          },
+        );
+      } else if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+        Alert.alert('Brak pozwolenia', 'na dostęp do kamery.', [{text: 'OK'}]);
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  //add existing photo from gallery
+
+  const addFromGallery = () => {
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+      },
+      (response: any) => {
+        if (response.didCancel) {
+          setPicture('');
+        } else if (response.errorCode) {
+          Alert.alert(
+            'Błąd',
+            'Przykro mi. Nie możesz dodać zdjęcia z galerii.',
+            [{text: 'OK'}],
+          );
+        } else if ((response.assets[0].type, response.assets[0].fileSize)) {
+          if (
+            response.assets[0].type !== 'image/jpg' &&
+            response.assets[0].type !== 'image/png' &&
+            response.assets[0].type !== 'image/jpeg'
+          ) {
+            Alert.alert(
+              'Nieprawidłowy format',
+              'Zdjęcie musi być w formacie .jpg lub .jpeg.',
+              [{text: 'OK'}],
+            );
+          } else if (response.assets[0].fileSize > 20971520) {
+            Alert.alert(
+              'Zbyt duży rozmiar pliku',
+              'Maksymalna wielkość pliku to 20MB.',
+              [{text: 'OK'}],
+            );
+          } else {
+            setPicture(response.assets[0].uri);
+          }
+        }
+      },
+    );
   };
 
   return (
@@ -124,18 +222,51 @@ const Index: React.FC<{
         color="#28235F"
       />
       <View style={styles.photo}>
-        <PhotoIcon
-          color={theme.color.white}
-          width={scale(21)}
-          height={verticalScale(21)}
-        />
-        <MontserratSemiBold
-          color={theme.color.main}
-          size={theme.fontSize.fourteen}
-          numberOfLines={1}>
-          Dodaj zdjęcie
-        </MontserratSemiBold>
+        <TouchableOpacity
+          accessible={true}
+          style={styles.photoButton}
+          accessibilityLabel="Zrób zdjęcie"
+          accessibilityHint="Przenosi do aparatu i pozwala zrobić zdjęcie"
+          accessibilityRole="button"
+          onPress={addFromCamera}>
+          <CameraIcon
+            color={theme.color.white}
+            width={scale(21)}
+            height={verticalScale(21)}
+          />
+          <MontserratSemiBold
+            color={theme.color.main}
+            size={theme.fontSize.fourteen}
+            numberOfLines={1}>
+            Zdjęcie z aparatu
+          </MontserratSemiBold>
+        </TouchableOpacity>
+        <TouchableOpacity
+          accessible={true}
+          style={styles.photoButton}
+          accessibilityLabel="Dodaj zdjęcie z galerii"
+          accessibilityHint="Przenosi do galerii i pozwala wybrać zdjęcie"
+          accessibilityRole="button"
+          onPress={addFromGallery}>
+          <GalleryIcon
+            color={theme.color.white}
+            width={scale(21)}
+            height={verticalScale(21)}
+          />
+          <MontserratSemiBold
+            color={theme.color.main}
+            size={theme.fontSize.fourteen}
+            numberOfLines={1}>
+            Zdjęcie z galerii
+          </MontserratSemiBold>
+        </TouchableOpacity>
       </View>
+      <Image
+        style={styles.photoPreview}
+        source={{
+          uri: picture,
+        }}
+      />
     </View>
   );
 };
@@ -191,11 +322,22 @@ const styles = ScaledSheet.create({
   },
   photo: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: '33@s',
+    paddingHorizontal: '16@s',
     width: '100%',
     height: '48@vs',
+  },
+  photoButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '50%',
+  },
+  photoPreview: {
+    marginHorizontal: '33@s',
+    height: '50%',
+    resizeMode: 'contain',
   },
 });
 export default Index;

@@ -2,7 +2,19 @@
 
 ## HN react-native app
 
-## 🛑💡🛑💡🛑Update 30.09.2022, check new app-release.apk:🛑💡🛑💡🛑
+## 🛑💡🛑💡🛑Update 07.10.2022, check new app-release.apk:🛑💡🛑💡🛑
+
+React-native-image-picker implemented;
+
+ADDING IMAGES TO POST IN FLATLIST IN PROGRESS;
+
+"Nowy Post" screen in drawer navigation updated:
+
+- Now, by pressing buttons: "Zdjęcie z aparatu" or "Zdjęcie z galerii" you can add photo from camera or add existing photo from your gallery and then see a preview
+  of added photo.
+- Next step TO DO - sending picture using redux to new post in flatlist.
+
+## Update 30.09.2022:
 
 Redux implemented in app
 
@@ -15,7 +27,7 @@ Redux implemented in app
 - Inputs can be filled with data and send using Redux to FlatList in "Artykuły" tab.
 - New post will be displayed at the end of the list.
 
-## Update 20.09.2022, check new app-release.apk:
+## Update 20.09.2022:
 
 Top Tab Bar Navigation rebuilt, changed styles of drawer nav & header nav, minor styling.
 
