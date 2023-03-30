@@ -45,6 +45,17 @@ const Index: React.FC<{
         style={styles.text}>
         {route.params.time}
       </MontserratRegular>
+      <View style={styles.pictureContainer}>
+        <Image
+          source={route.params.picture}
+          style={styles.image}
+          resizeMode={'center'}
+          accessible={true}
+          accessibilityRole="image"
+          accessibilityLabel="Zdjęcie autora"
+          accessibilityHint="Przedstawia zdjęcie wybranego autora"
+        />
+      </View>
       <MontserratSemiBold
         color={theme.color.primaryMint}
         size={theme.fontSize.twenty}
@@ -81,5 +92,8 @@ const styles = ScaledSheet.create({
     borderRadius: 45 / 2,
   },
   text: {},
+  pictureContainer: {
+    backgroundColor: 'gold',
+  },
 });
 export default Index;

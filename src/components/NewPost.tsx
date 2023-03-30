@@ -57,33 +57,10 @@ const Index: React.FC<{
     title: title,
     articleText: articleText,
     time: new Date().toLocaleString(),
+    picture: picture,
   });
 
   console.log('newpostdata = ', newPostData);
-
-  const newPost = () => {
-    setId(Math.random().toString(36).slice(2, 14));
-    setIndex(index + 1);
-    setTime(new Date().toLocaleString());
-    setNewPostData(prev => ({...prev, id, index, title, articleText, time}));
-    setArticlesList(current => [...current, newPostData]);
-    // DATA_LIST.push(newPostData);
-    // store.dispatch;
-    // console.log('aaa');
-    // console.log('bbb');
-    // console.log('ccc');
-    // console.log('ddd');
-    console.log('newpostdata after button press = ', newPostData);
-
-    if (newPostData.title !== '' && newPostData.articleText !== '') {
-      DATA_LIST.push(newPostData);
-      // store.dispatch;
-      dispatch;
-      console.log('store getstate: ', store.getState());
-    } else {
-      console.log('something went wrong');
-    } //w ten sposob dodaje się tylko po drugim kliku
-  };
 
   //add photo from camera
 
@@ -167,10 +144,36 @@ const Index: React.FC<{
             );
           } else {
             setPicture(response.assets[0].uri);
+            console.log(setPicture);
           }
         }
       },
     );
+  };
+
+  const newPost = () => {
+    setId(Math.random().toString(36).slice(2, 14));
+    setIndex(index + 1);
+    setTime(new Date().toLocaleString());
+    setPicture(picture);
+    setNewPostData(prev => ({...prev, id, index, title, articleText, time}));
+    setArticlesList(current => [...current, newPostData]);
+    // DATA_LIST.push(newPostData);
+    // store.dispatch;
+    // console.log('aaa');
+    // console.log('bbb');
+    // console.log('ccc');
+    // console.log('ddd');
+    console.log('newpostdata after button press = ', newPostData);
+
+    if (newPostData.title !== '' && newPostData.articleText !== '') {
+      DATA_LIST.push(newPostData);
+      // store.dispatch;
+      dispatch;
+      console.log('store getstate: ', store.getState());
+    } else {
+      console.log('something went wrong');
+    } //w ten sposob dodaje się tylko po drugim kliku
   };
 
   return (
